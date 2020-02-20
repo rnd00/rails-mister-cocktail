@@ -1,0 +1,10 @@
+<div class="container">
+  <h1 class="text-center">Add a new Dose for <%= @cocktail.name %></h1>
+  <%= render 'doses/form' %>
+
+  <%# buttons and whatnots %>
+  <%= link_to cocktails_path, class: "btn btn-secondary text-white" do %>
+    <i class="fa fa-backward" aria-hidden="true"></i>
+    Back
+  <% end %>
+</div>
