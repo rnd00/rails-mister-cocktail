@@ -13,19 +13,24 @@
   <div class="cards">
     <% @cocktails.each do |cocktail| %>
       <div class="card-product my-3 bg-secondary text-white">
-        <%= image_tag "https://picsum.photos/seed/#{rand(0..100)}/120", alt: cocktail.name %>
-        <div class="card-product-infos">
-          <h2>
-            <%= link_to cocktail.name, cocktail_path(cocktail), class: "text-white" %>
-            <%= link_to cocktail_path(cocktail), method: :delete, class: 'text-small text-danger hidden', id: 'delete-button' do %>
-              <i class="fas fa-minus-circle"></i>
-            <% end %>
-          </h2>
-          <% if cocktail.description %>
-            <p><%= cocktail.description %></p>
+        <%= link_to cocktail_path(cocktail) do %>
+          <% if cocktail.photo.attached? %>
+            <%= cl_image_tag cocktail.photo.key, height: 300, width: 300, crop: :fill, class: "mh-100 mw-100" %>
+          <% else %>
+            <%= image_tag "https://picsum.photos/seed/#{rand(0..100)}/120", alt: cocktail.name, class: "mh-100 mw-100" %>
           <% end %>
-
-        </div>
+          <div class="card-product-infos">
+            <h2>
+              <%= link_to cocktail.name, cocktail_path(cocktail), class: "text-white" %>
+              <%= link_to cocktail_path(cocktail), method: :delete, class: 'text-small text-danger hidden', id: 'delete-button' do %>
+                <i class="fas fa-minus-circle"></i>
+              <% end %>
+            </h2>
+            <% if cocktail.description %>
+              <p><%= cocktail.description %></p>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>

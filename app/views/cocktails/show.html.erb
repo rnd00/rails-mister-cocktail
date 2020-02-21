@@ -6,7 +6,7 @@
       <div class="col col-4 border-0 rounded shadow-light d-flex flex-wrap justify-content-center bg-secondary mx-3 p-3">
         <div class="align-self-center" id="image-show">
           <% if @cocktail.photo.attached? %>
-            <%= cl_image_tag @cocktail.photo.key, height: 300, width: 300 %>
+            <%= cl_image_tag @cocktail.photo.key, height: 300, width: 300, crop: :fill, class: "mh-100 mw-100" %>
           <% else %>
             <%= image_tag "https://picsum.photos/seed/#{rand(0..100)}/300", alt: @cocktail.name, class: "mh-100 mw-100" %>
           <% end %>
