@@ -1,6 +1,7 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+  height: 50px;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -14,4 +15,8 @@
 
 .navbar-lewagon .nav-link img {
   height: 40px;
+}
+
+.fix-static {
+  padding-top: 60px;
 }

@@ -16,5 +16,8 @@
 // const imagePath = (name) => images(name, true)
 
 import 'bootstrap';
+import { toggleDelete } from '../components/toggledelete'
 
 console.log('Hello World from Webpacker')
+
+toggleDelete();

@@ -1,25 +1,46 @@
 <div class="container">
-  <h1 class="text-center">Cocktail details</h1>
-  <h2 class="text-center"><%= @cocktail.name %></h2>
-  <%# list all of the doses  %>
-  <ul>
-    <% @doses.each do |dose| %>
-      <li>
-        <%= "#{dose.description} of #{dose.ingredient.name}" %>
-        <%= link_to dose_path(dose), method: :delete, class: 'text-small text-danger' do %>
-          <i class="fas fa-minus-circle"></i>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-
-  <%# buttons and whatnots %>
-  <%= link_to new_cocktail_dose_path(@cocktail), class: "btn btn-info text-white" do %>
-    <i class="fas fa-glass-whiskey"></i>
-    Add a dose
-  <% end %>
-  <%= link_to cocktails_path, class: "btn btn-secondary text-white" do %>
-    <i class="fa fa-backward" aria-hidden="true"></i>
-    Back
-  <% end %>
+  <!-- <h1 class="text-center">Cocktail details</h1> -->
+  <div class="container p-3">
+    <div class="row justify-content-center">
+      <div class="col col-4 border-0 rounded shadow-light d-flex flex-wrap justify-content-center bg-secondary mx-3 p-3">
+        <div class="align-self-center" id="image-show">
+          <%= image_tag "https://picsum.photos/seed/#{rand(0..100)}/300", alt: @cocktail.name, class: "mh-100 mw-100" %>
+        </div>
+      </div>
+      <div class="col col-5 d-flex flex-column border-0 rounded shadow-light bg-light mx-3 p-3">
+        <div class="p-2 flex-row">
+          <h3 class="text-center"><%= @cocktail.name %></h2>
+          <p class="text-center"><%= @cocktail.description %></p>
+          <% unless @doses[0].nil? %>
+            <ul class="">
+              <% @doses.each do |dose| %>
+                <li>
+                  <%= "#{dose.description.capitalize} of #{dose.ingredient.name}" %>
+                  <%= link_to dose_path(dose), method: :delete, class: 'text-small text-danger hidden', id: 'delete-ingredient' do %>
+                    <i class="fas fa-minus-circle"></i>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+        <div class="p-2 mx-auto flex-row justify-content-center align-self-end">
+          <%# buttons and whatnots %>
+          <%= link_to new_cocktail_dose_path(@cocktail), class: "btn btn-secondary text-white" do %>
+            <i class="fas fa-glass-whiskey"></i>
+            <small>Add Ingredient</small>
+          <% end %>
+          <button class="btn btn-danger text-white" id="toggle-delete">
+            <i class="fas fa-glass-whiskey"></i>
+            <small>Remove Ingredients</small>
+          </button>
+        </div>
+        <div class="p-2 mx-auto flex-row align-self-end">
+          <%= link_to cocktails_path, class: "btn btn-dark text-white" do %>
+            <i class="fa fa-backward" aria-hidden="true"></i>
+            <small>Back</small>
+          <% end %>
+        </div>
+      </div>
+    </div>
 </div>
