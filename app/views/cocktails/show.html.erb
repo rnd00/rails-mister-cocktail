@@ -2,12 +2,20 @@
   <!-- <h1 class="text-center">Cocktail details</h1> -->
   <div class="container p-3">
     <div class="row justify-content-center">
+      <!-- BEGIN PHOTO DIV -->
       <div class="col col-4 border-0 rounded shadow-light d-flex flex-wrap justify-content-center bg-secondary mx-3 p-3">
         <div class="align-self-center" id="image-show">
-          <%= image_tag "https://picsum.photos/seed/#{rand(0..100)}/300", alt: @cocktail.name, class: "mh-100 mw-100" %>
+          <% if @cocktail.photo.attached? %>
+            <%= cl_image_tag @cocktail.photo.key, height: 300, width: 400, crop: :fill, class: "mh-100 mw-100" %>
+          <% else %>
+            <%= image_tag "https://picsum.photos/seed/#{rand(0..100)}/300", alt: @cocktail.name, class: "mh-100 mw-100" %>
+          <% end %>
         </div>
       </div>
+      <!-- END PHOTO DIV -->
+      <!-- BEGIN DATA DIV -->
       <div class="col col-5 d-flex flex-column border-0 rounded shadow-light bg-light mx-3 p-3">
+        <!-- BEGIN DESC DIV -->
         <div class="p-2 flex-row">
           <h3 class="text-center"><%= @cocktail.name %></h2>
           <p class="text-center"><%= @cocktail.description %></p>
@@ -24,8 +32,9 @@
             </ul>
           <% end %>
         </div>
+        <!-- END DESC DIV -->
+        <!-- BEGIN BUTTON DIV -->
         <div class="p-2 mx-auto flex-row justify-content-center align-self-end">
-          <%# buttons and whatnots %>
           <%= link_to new_cocktail_dose_path(@cocktail), class: "btn btn-secondary text-white" do %>
             <i class="fas fa-glass-whiskey"></i>
             <small>Add Ingredient</small>
@@ -41,6 +50,8 @@
             <small>Back</small>
           <% end %>
         </div>
+        <!-- END BUTTON DIV -->
       </div>
+      <!-- END DATA DIV -->
     </div>
 </div>

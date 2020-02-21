@@ -6,7 +6,6 @@ class CocktailsController < ApplicationController
 
   def show
     @delete_hidden_state = true
-    @toggle = toggle(@delete_hidden_state)
     # get set_cocktail
   end
 
@@ -26,11 +25,7 @@ class CocktailsController < ApplicationController
   private
 
   def cocktail_params
-    params.require(:cocktail).permit(:name, :description)
-  end
-
-  def toggle(arg)
-    arg = !arg
+    params.require(:cocktail).permit(:name, :description, :photo)
   end
 
   def set_cocktail
