@@ -1,20 +1,30 @@
 <div class="container custom-container">
   <h1 class="text-center title-index">Cocktail library</h1>
-  <div class="d-flex justify-content-center">
-    <%= link_to new_cocktail_path, class: "btn btn-primary text-white" do %>
+  <div class="d-flex justify-content-center p-2 mx-auto">
+    <%= link_to new_cocktail_path, class: "btn btn-primary text-white mx-1" do %>
       <i class="fa fa-plus" aria-hidden="true"></i>
       <small>Add a new Cocktail</small>
     <% end %>
+    <button class="btn btn-danger text-white mx-1" id="toggle-delete">
+      <i class="fas fa-minus"></i>
+      <small>Toggle delete</small>
+    </button>
   </div>
   <div class="cards">
     <% @cocktails.each do |cocktail| %>
       <div class="card-product my-3 bg-secondary text-white">
         <%= image_tag "https://picsum.photos/seed/#{rand(0..100)}/120", alt: cocktail.name %>
         <div class="card-product-infos">
-          <h2><%= link_to cocktail.name, cocktail_path(cocktail), class: "text-white" %></h2>
+          <h2>
+            <%= link_to cocktail.name, cocktail_path(cocktail), class: "text-white" %>
+            <%= link_to cocktail_path(cocktail), method: :delete, class: 'text-small text-danger hidden', id: 'delete-button' do %>
+              <i class="fas fa-minus-circle"></i>
+            <% end %>
+          </h2>
           <% if cocktail.description %>
             <p><%= cocktail.description %></p>
           <% end %>
+
         </div>
       </div>
     <% end %>
